@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 7001:27017
+    networks: 
+      - net_app
+    volumes:
+      # - mongodb_data:/data/db
+      - /Users/yusup.nurfaisal_gue/Documents/Yusuf Nurfaisal Document/Others/project/docker/mongo/mongo-data:/data/db
+
+volumes:
+    mongodb_data:

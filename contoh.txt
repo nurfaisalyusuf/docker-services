@@ -1,0 +1,58 @@
+
+docker service rm service_chat
+
+cd ../../service/chat_service
+docker build -t chat_service:latest .
+
+cd ../../prod_stack/service
+docker stack deploy -c docker_chat_service.yml service
+
+docker-compose.yml
+version: '3'
+
+services:
+  chat:
+    image: chat_service
+    environment:
+      TZ: "Asia/Jakarta"
+    volumes:
+      - ./../../service/chat_service:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 8105:80
+    networks:
+      - guesehat_gs
+      #- apm-elk-python-docker_lab-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2000M
+        #reservations:
+          #cpus: '0.20'
+          #memory: 20M
+    command: node index.js
+
+networks:
+  guesehat_gs:
+    external: true
+  #apm-elk-python-docker_lab-network:
+    #external: true
+
+Dockerfile
+FROM node:12.13.1
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm install
+#RUN npm install -g nodemon
+EXPOSE 80
+
+EXPOSE 443
+
+# COPY . .
+#
+# CMD [ "npm", "start" ]

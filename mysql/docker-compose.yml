@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:5.7.26
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '7000:3306'
+    volumes:
+      # - mysql_data:/var/lib/mysql
+      - /Users/yusup.nurfaisal_gue/Documents/Yusuf Nurfaisal Document/Others/project/docker/mysql/mysql-data:/var/lib/mysql
+    networks: 
+      - net_app
+
+volumes:
+  mysql_data:
