@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  mongodb:
+  db:
     image: mongo:latest
     restart: always
     environment:
@@ -10,10 +10,15 @@ services:
     ports:
       - 7001:27017
     networks: 
-      - net_app
+      - mongo_network
     volumes:
       # - mongodb_data:/data/db
       - /Users/yusup.nurfaisal_gue/Documents/Yusuf Nurfaisal Document/Others/project/docker/mongo/mongo-data:/data/db
 
 volumes:
     mongodb_data:
+
+networks:
+  mongo_network:
+    external: true
+    name: net_app

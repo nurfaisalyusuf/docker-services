@@ -1,17 +1,17 @@
 version: '3.7'
 
 services:
-  redis:
+  db:
     image: redis
     ports:
-        - 6379:6379
+        - 7002:6379
     volumes:
         - ./config/redis.conf:/redis.conf
     command: [ "redis-server", "/redis.conf" ]
     networks: 
-      - net_app
+      - redis_network
 
 networks:
-  net_app:
-    external: 
-      name: net_app
+  redis_network:
+    external: true
+    name: net_app

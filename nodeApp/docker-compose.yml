@@ -1,25 +1,20 @@
 version: '3.7'
 
 services:
-  chat:
-    image: chat_service
+  nodeapp:
+    image: node_app:1.0.0
     environment:
       TZ: "Asia/Jakarta"
     volumes:
-      - ./../../service/chat_service:/usr/src/app
+      - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - 8105:80
+      - 7010:8080
     networks:
-      - net_app
-    deploy:
-      mode: replicated
-      replicas: 1
-      resources:
-        limits:
-          cpus: '1'
-          memory: 2000M
-        #reservations:
-          #cpus: '0.20'
-          #memory: 20M
+      - node_network
     command: node index.js
+
+networks:
+  node_network:
+    external: true
+    name: net_app
