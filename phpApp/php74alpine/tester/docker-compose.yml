@@ -1,0 +1,16 @@
+version: '3.7'
+
+# services:
+#     example:
+#       image: youngmartin45/nginx-phpfpm:latest
+#       volumes:
+#         - .:/www
+#       ports:
+#         - "8090:80"
+services:
+    example:
+      image: trafex/alpine-nginx-php7:latest
+      volumes:
+        - .:/var/www/html
+      ports:
+        - "8090:8080"

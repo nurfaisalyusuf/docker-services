@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+    example:
+      image: youngmartin45/nginx-phpfpm:7.3
+      volumes:
+        - .:/www
+      ports:
+        - "8090:80"

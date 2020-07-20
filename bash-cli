@@ -61,8 +61,7 @@ function version
 function running_apps ()
 {
     PWD="$(pwd)"
-    # cat "$PWD/$1/docker-compose.yml"
-    docker stack deploy --compose-file $1/docker-compose.yml $1
+    docker stack deploy --with-registry-auth --compose-file $1/docker-compose.yml $1
 }
 function running_all
 {

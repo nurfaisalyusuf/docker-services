@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '7001:3306'
+    volumes:
+      # - mysql_data:/var/lib/mysql
+      - ./mariadb-data:/var/lib/mysql
+    networks: 
+      - mysql_network
+
+volumes:
+  mysql_data:
+
+networks:
+  mysql_network:
+    external: true
+    name: net_app
