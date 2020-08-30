@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+    portainer:
+        image: portainer/portainer
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - portainer_data:/data
+        ports:
+            - "9000:9000"
+        environment:
+            VIRTUAL_HOST: portainer.domain.com
+            LETSENCRYPT_HOST: portainer.domain.com
+            LETSENCRYPT_EMAIL: young.martin45@gmail.com
+
+networks:
+    php_network:
+        external: true
+        name: net_app
+
+volumes:
+    portainer_data:

@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+    example56:
+      image: youngmartin45/nginx-phpfpm-ext:7.4
+      volumes:
+        - .:/www
+      ports:
+        - "8096:80"
+      networks: 
+        - php_network
+
+networks:
+  php_network:
+      external: true
+      name: net_app
+      driver: overlay
+      attachable: true

@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  percona-server:
+    image: percona
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "6603:3306"
+    volumes:
+      # create volumes for use
+      - percona_data:/var/lib/mysql
+      # bind mount my local my.cnf
+      # - $PWD/my.cnf:/etc/my.cnf.d/my.cnf
+    networks: 
+      - percona_network
+
+volumes:
+  percona_data:
+
+networks:
+  percona_network:
+    external: true
+    name: net_app

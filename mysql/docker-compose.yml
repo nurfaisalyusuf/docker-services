@@ -12,8 +12,8 @@ services:
       # <Port exposed> : < MySQL Port running inside container>
       - '7000:3306'
     volumes:
-      # - mysql_data:/var/lib/mysql
-      - /Users/yusup.nurfaisal_gue/Documents/Yusuf Nurfaisal Document/Others/project/docker/mysql/mysql-data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
+      # - /Users/yusup.nurfaisal_gue/Documents/Yusuf Nurfaisal Document/Others/project/docker/mysql/mysql-data:/var/lib/mysql
     networks: 
       - mysql_network
 
