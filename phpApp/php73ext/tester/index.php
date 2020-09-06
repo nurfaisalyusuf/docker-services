@@ -1,5 +1,5 @@
 <?php 
-// phpinfo();
+phpinfo();
 $servername = "db_percona-server";
 $username = "root";
 $password = "secret";
@@ -13,12 +13,12 @@ $password = "secret";
 //   echo "Connection failed: " . $e->getMessage();
 // }
 
-$mysqli = new mysqli($servername,$username,$password,"test");
-if ($mysqli -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
-} else {
-  echo "Connected successfully mysqli";
-}
+// $mysqli = new mysqli($servername,$username,$password,"test");
+// if ($mysqli -> connect_errno) {
+//   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+//   exit();
+// } else {
+//   echo "Connected successfully mysqli";
+// }
 
 ?>

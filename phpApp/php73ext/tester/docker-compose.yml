@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     example56:
-      image: youngmartin45/nginx-phpfpm-ext:7.3
+      image: youngmartin45/nginx-phpfpm-ext:7.3-redis
       volumes:
         - .:/www
       ports:

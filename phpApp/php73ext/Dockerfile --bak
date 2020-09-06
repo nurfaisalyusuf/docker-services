@@ -1,0 +1,44 @@
+FROM youngmartin45/nginx-phpfpm:7.3
+
+LABEL Maintainer="Young Martin 45 <young.martin45@gmail.com>" \
+    Description="Nginx & php-fpm 7.3 with extension based on Alpine Linux."
+RUN apk add --update perl
+
+ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
+
+RUN chmod uga+x /usr/local/bin/install-php-extensions && sync
+RUN apk update && apk add --update --virtual .build-deps \
+        curl \
+        git \
+        zip unzip \
+    && install-php-extensions \
+        bcmath \
+        bz2 \
+        calendar \
+        exif \
+        gd \
+        intl \
+        ldap \
+        memcached \
+        mysqli \
+        opcache \
+        pdo_mysql \
+        pdo_pgsql \
+        pgsql \
+        redis \
+        soap \
+        xsl \
+        zip \
+    && apk del .build-deps
+
+# modify www-data user to have id 1000
+    RUN apk add \
+    --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted \
+    --virtual .shadow-deps \
+    shadow \
+    && usermod -u 1000 www-data \
+    && groupmod -g 1000 www-data \
+    && apk del .shadow-deps \
+    && rm -rf /var/cache/apk/* \
+    && php -m
+

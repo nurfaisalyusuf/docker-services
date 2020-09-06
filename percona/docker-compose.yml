@@ -21,3 +21,5 @@ networks:
   percona_network:
     external: true
     name: net_app
+    driver: overlay
+    attachable: true
