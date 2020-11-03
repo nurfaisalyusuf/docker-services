@@ -10,7 +10,8 @@ services:
       # create volumes for use
       - percona_data:/var/lib/mysql
       # bind mount my local my.cnf
-      # - $PWD/my.cnf:/etc/my.cnf.d/my.cnf
+      # - ./my.cnf:/etc/my.cnf.d/my.cnf
+      - ./config:/etc/mysql/conf.d
     networks: 
       - percona_network
 
